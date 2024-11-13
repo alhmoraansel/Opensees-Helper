@@ -5,7 +5,7 @@ You can use pylance with vscode to get the sweet autocomplete working,
 
 #Tip: enable autocomplete brackets in pylance
 
-Requirements:
+## Requirements:
 
 pip install openseespy
 
