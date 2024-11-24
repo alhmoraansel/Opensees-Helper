@@ -89,6 +89,13 @@ def beam3D_element(element_tag=1, i_node=1, j_node=2,*const, transf_tag=1, densi
 	else:
 		ops.element('elasticBeamColumn', element_tag, *nodes, *const, transf_tag, '-mass', density,"-cmass")
 
+def beam3D_element(element_tag=1, i_node=1, j_node=2,*const, transf_tag=1, density=0, c_mass=False):
+	nodes = [i_node,j_node]
+	if c_mass == False:
+		ops.element('elasticBeamColumn', element_tag,*nodes, *const, transf_tag, '-mass', density, "-lMass")
+	else:
+		ops.element('elasticBeamColumn', element_tag, *nodes, *const, transf_tag, '-mass', density,"-cmass")
+
 def equal_dof(m_node = 10, s_node = 15):
 	ops.equalDOF(m_node, s_node, 1,2,3)
 
@@ -291,7 +298,7 @@ def quick_animate_vfo(speed = 1.0,view = '3D',file_name = "animation.mp4"):
 
 #--------------------------------------------------------------OPSPLT RELATED------------------------------------------------------
 
-def ops_plt(model_name = "Model", show_nodes = "yes", show_elements = "yes"):
+def ops_plot_model(model_name = "Model", show_nodes = "yes", show_elements = "yes"):
 	if show_nodes == "yes" and show_elements == "no":
 		opsplt.plot_model("nodes", Model = model_name)
 	elif show_elements == "yes" and show_nodes == "no":
